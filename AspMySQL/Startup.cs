@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AspMySQL.Models;
 
 namespace AspMySQL
 {
@@ -24,6 +25,8 @@ namespace AspMySQL
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Configure MySQL
+            services.Add(new ServiceDescriptor(typeof(MusicContext), new MusicContext(Configuration.GetConnectionString("DefaultConnection"))));
 
             services.AddControllers();
         }
